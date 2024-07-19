@@ -1,0 +1,51 @@
+<svg #container class="container">
+  <g #chartArea class="chart-area" [attr.transform]="'translate(' + margin.left + ', ' + margin.top + ')'">
+    <g #xAxisRef class="x-axis" [attr.transform]="'translate(0, ' + height + ')'"></g>
+    <g #yAxisRef class="y-axis"></g>
+    <g class="x-axis-groups">
+      @for (item of mocData; track $index) {
+        <line
+          stroke="#E0E0E0"
+          stroke-width="2"
+          stroke-dasharray="5, 5"
+          [attr.transform]="'translate(' +
+          (xAxis(item.city)! + barChartRange.bandwidth() + barChartRange.step() * mocData.length) +
+          ', 0)'"
+          x1="0"
+          y1="0"
+          x2="0"
+          [attr.y2]="height"
+        ></line>
+      }
+    </g>
+    <g class="y-axis-groups">
+      @for (item of yAxisRange; track $index) {
+        <line
+          stroke="#E0E0E0"
+          stroke-width="2"
+          stroke-dasharray="5, 5"
+          x1="0"
+          [attr.y1]="yAxis(item)"
+          [attr.x2]="width"
+          [attr.y2]="yAxis(item)"
+        ></line>
+      }
+    </g>
+    @for (item of mocData; track $index) {
+      <g
+        class="chart-group"
+        [attr.transform]="'translate(' + xAxis(item.city)! + ', 0)'"
+      >
+        @for (col of item.p; let i = $index; track i) {
+          <rect
+            [attr.x]="barChartRange(toString(i))"
+            [attr.y]="yAxis(col)"
+            [attr.fill]="color(toString(i))"
+            [attr.height]="height - yAxis(col)"
+            [attr.width]="barChartRange.bandwidth()"
+          ></rect>
+        }
+      </g>
+    }
+  </g>
+</svg>
