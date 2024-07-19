@@ -1,0 +1,16 @@
+<svg class="chart-container">
+  <g #chartArea>
+    @for (item of arcData; track $index) {
+      <path [attr.fill]="color(toString(item.value))" [attr.d]="arcGenerator(item)"></path>
+    }
+  </g>
+
+  <defs>
+        <linearGradient id="linearGradient">
+          <stop offset="-14.85%" stop-color="#29005A" />
+          <stop offset="18.11%" stop-color="#29005A" />
+          <stop offset="79.89%" stop-color="#E1238E" />
+          <stop offset="125.64%" stop-color="#E1238E" />
+        </linearGradient>
+      </defs>
+</svg>
