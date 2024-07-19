@@ -1,8 +1,13 @@
 <svg class="chart-container">
-  <g #chartArea>
+  <g class="chart-area" #chartArea>
     @for (item of arcData; track $index) {
       <path [attr.fill]="color(toString(item.value))" [attr.d]="arcGenerator(item)"></path>
     }
+  </g>
+
+  <g class="text">
+    <text x="30" y="-20" [attr.font-size]="32">Total Hours</text>
+    <text x="70" y="20" [attr.font-size]="48">80</text>
   </g>
 
   <defs>

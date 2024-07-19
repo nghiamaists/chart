@@ -6,7 +6,11 @@ svg {
   width: 500px;
   height: 500px;
 
-  g {
+  .chart-area {
     transform: translate(50%, 50%);
+  }
+
+  .text {
+    transform: translate(calc(50% - 90px), 50%);
   }
 }
